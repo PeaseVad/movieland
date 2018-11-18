@@ -5,8 +5,10 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="getAllMoviesSQL" class="java.lang.String">
-        <constructor-arg value="select id, movie_name_rus,movie_name_native,release_date,rating,price,poster from movie_land.movie"/>
+        <constructor-arg value="select id, movie_name_rus,movie_name_native,release_date,rating,price,poster from movie"/>
     </bean>
-
+    <bean id="getRandomMoviesSQL" class="java.lang.String">
+        <constructor-arg value="select id, movie_name_rus,movie_name_native,release_date,rating,price,poster from movie order by random() limit 3"/>
+    </bean>
 
 </beans>
