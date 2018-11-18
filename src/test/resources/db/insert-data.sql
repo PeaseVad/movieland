@@ -1,0 +1,3 @@
+delete from  movie;
+INSERT INTO movie (id, movie_name_rus, movie_name_native, release_date, country, rating, price, poster) VALUES (1, 'Список Шиндлера', 'Schindler''s List', 1993, 'США', 8.7, 150.5, 'https://images-na.ssl-images-amazon.com/images/M/MV5BNDE4OTMxMTctNmRhYy00NWE2LTg3YzItYTk3M2UwOTU5Njg4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1._SX140_CR0,0,140,209_.jpg');
+INSERT INTO movie (id, movie_name_rus, movie_name_native, release_date, country, rating, price, poster) VALUES (2, 'Пролетая над гнездом кукушки', 'One Flew Over the Cuckoo''s Nest', 1975, 'США',8.7, 180, 'https://images-na.ssl-images-amazon.com/images/M/MV5BZjA0OWVhOTAtYWQxNi00YzNhLWI4ZjYtNjFjZTEyYjJlNDVlL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1._SY209_CR0,0,140,209_.jpg');
