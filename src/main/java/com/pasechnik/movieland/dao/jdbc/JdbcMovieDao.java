@@ -40,3 +40,4 @@ public class JdbcMovieDao implements MovieDao {
         this.getRandomMoviesSQL = getRandomMoviesSQL;
     }
 }
+
