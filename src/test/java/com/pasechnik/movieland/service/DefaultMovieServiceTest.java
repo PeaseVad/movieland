@@ -47,15 +47,10 @@ public class DefaultMovieServiceTest {
 
         assertEquals(2, actualMovieList.size());
 
-        for (int i = 0; i < actualMovieList.size(); i++) {
-            assertEquals(expectedMovieList.get(i).getId(), actualMovieList.get(i).getId());
-            assertEquals(expectedMovieList.get(i).getNameRussian(), actualMovieList.get(i).getNameRussian());
-            assertEquals(expectedMovieList.get(i).getNameNative(), actualMovieList.get(i).getNameNative());
-            assertEquals(expectedMovieList.get(i).getYearOfRelease(), actualMovieList.get(i).getYearOfRelease());
-            assertEquals(expectedMovieList.get(i).getRating(), actualMovieList.get(i).getRating(), 0.1);
-            assertEquals(expectedMovieList.get(i).getPrice(), actualMovieList.get(i).getPrice(), 0.1);
-            assertEquals(expectedMovieList.get(i).getPicturePath(), actualMovieList.get(i).getPicturePath());
+        for (Movie actualMovie : actualMovieList) {
+            assertTrue(expectedMovieList.contains(actualMovie));
         }
+
     }
 
     public void getThreeRandomMovies() {
@@ -92,15 +87,8 @@ public class DefaultMovieServiceTest {
 
         assertEquals(2, actualMovieList.size());
 
-        for (int i = 0; i < actualMovieList.size(); i++) {
-            assertEquals(expectedMovieList.get(i).getId(), actualMovieList.get(i).getId());
-            assertEquals(expectedMovieList.get(i).getNameRussian(), actualMovieList.get(i).getNameRussian());
-            assertEquals(expectedMovieList.get(i).getNameNative(), actualMovieList.get(i).getNameNative());
-            assertEquals(expectedMovieList.get(i).getYearOfRelease(), actualMovieList.get(i).getYearOfRelease());
-            assertEquals(expectedMovieList.get(i).getRating(), actualMovieList.get(i).getRating(), 0.1);
-            assertEquals(expectedMovieList.get(i).getPrice(), actualMovieList.get(i).getPrice(), 0.1);
-            assertEquals(expectedMovieList.get(i).getPicturePath(), actualMovieList.get(i).getPicturePath());
-
+        for (Movie actualMovie : actualMovieList) {
+            assertTrue(expectedMovieList.contains(actualMovie));
         }
     }
 }

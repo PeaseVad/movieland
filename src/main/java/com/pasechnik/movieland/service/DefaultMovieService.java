@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 
@@ -22,7 +21,6 @@ public class DefaultMovieService implements MovieService {
         this.movieDao = movieDao;
     }
 
-
     @Override
     public List<Movie> getAll() {
         List<Movie> movieList  =movieDao.getAll();
@@ -36,6 +34,4 @@ public class DefaultMovieService implements MovieService {
         logger.debug("getThreeRandomMovies returned {} rows" ,movieList.size());
         return movieList ;
     }
-
-
 }
