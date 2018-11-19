@@ -16,7 +16,6 @@ public class DefaultMovieService implements MovieService {
         this.movieDao = movieDao;
     }
 
-
     @Override
     public List<Movie> getAll() {
         return movieDao.getAll();
@@ -26,6 +25,4 @@ public class DefaultMovieService implements MovieService {
     public List<Movie> getThreeRandomMovies() {
         return movieDao.getThreeRandomMovies();
     }
-
-
 }
