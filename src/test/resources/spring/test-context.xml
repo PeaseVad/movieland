@@ -6,7 +6,7 @@
                                                     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
                                                     http://www.springframework.org/schema/jdbc
                                                     http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
-    <import resource="query-context.xml"/>
+
     <jdbc:embedded-database id="dataSource"  type="H2" >
         <jdbc:script location="classpath:db/create-db.sql" />
         <jdbc:script location="classpath:db/insert-data.sql" />
