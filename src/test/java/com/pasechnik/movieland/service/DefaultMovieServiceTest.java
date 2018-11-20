@@ -47,10 +47,10 @@ public class DefaultMovieServiceTest {
 
         assertEquals(2, actualMovieList.size());
 
+
         for (Movie actualMovie : actualMovieList) {
             assertTrue(expectedMovieList.contains(actualMovie));
         }
-
     }
 
     public void getThreeRandomMovies() {
