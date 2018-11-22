@@ -17,7 +17,7 @@ import static org.mockito.Mockito.when;
 public class DefaultGenreServiceTest {
 
     @Test
-    public void getAll() {
+    public void testGetAll() {
         GenreDao genreDao = mock(GenreDao.class);
 
         List<Genre> expectedGenreList = new ArrayList<>();

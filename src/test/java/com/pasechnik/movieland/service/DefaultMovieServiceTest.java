@@ -14,7 +14,7 @@ import static org.mockito.Mockito.when;
 public class DefaultMovieServiceTest {
 
     @Test
-    public void getAll() {
+    public void testGetAll() {
         MovieDao movieDao = mock(MovieDao.class);
 
         List<Movie> expectedMovieList = new ArrayList<>();
@@ -53,7 +53,8 @@ public class DefaultMovieServiceTest {
         }
     }
 
-    public void getThreeRandomMovies() {
+    @Test
+    public void testGetThreeRandomMovies() {
 
         MovieDao movieDao = mock(MovieDao.class);
 
@@ -83,7 +84,7 @@ public class DefaultMovieServiceTest {
 
         when(movieDao.getAll()).thenReturn(expectedMovieList);
 
-        List<Movie> actualMovieList = movieService.getAll();
+        List<Movie> actualMovieList = movieService.getThreeRandomMovies();
 
         assertEquals(2, actualMovieList.size());
 

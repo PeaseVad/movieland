@@ -87,7 +87,7 @@ public class MovieControllerTestI extends AbstractJUnit4SpringContextTests {
     }
 
     @Test
-    public void getThreeRandomMovies() throws Exception {
+    public void testGetThreeRandomMovies() throws Exception {
 
         Movie movie = new Movie();
         movie.setId(1);
