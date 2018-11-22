@@ -10,3 +10,9 @@ CREATE TABLE  movie
 )
 ;
 
+CREATE TABLE  genre
+(
+	id  INTEGER IDENTITY PRIMARY KEY,
+	genre VARCHAR(400)
+)
+;

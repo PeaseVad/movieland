@@ -10,5 +10,8 @@
     <bean id="getRandomMoviesSQL" class="java.lang.String">
         <constructor-arg value="select id, movie_name_rus,movie_name_native,release_date,rating,price,poster from movie order by random() limit 3"/>
     </bean>
+    <bean id="getAllGenresSQL" class="java.lang.String">
+        <constructor-arg value="select id,genre from genre"/>
+    </bean>
 
 </beans>

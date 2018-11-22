@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-
-    <property name="DEV_HOME" value="c:/logs" />
-
     <appender name="FILE-AUDIT"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${DEV_HOME}/movieland.log</file>
+        <file>logs/movieland.log</file>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <Pattern>
                 %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
@@ -14,13 +11,18 @@
 
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- rollover daily -->
-            <fileNamePattern>${DEV_HOME}/movieland-%d{yyyy-MM-dd}.log.%i
+            <fileNamePattern>logs/movieland-%d{yyyy-MM-dd}.log.%i
             </fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy
                     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>5MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
+    </appender>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
     </appender>
 
     <logger name="com.pasechnik.movieland" level="debug"
@@ -29,7 +31,7 @@
     </logger>
 
     <root level="error">
-        <appender-ref ref="FILE-AUDIT" />
+        <appender-ref ref="STDOUT" />
     </root>
 
 </configuration>

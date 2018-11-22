@@ -35,6 +35,7 @@ public class JdbcMovieDaoTest {
 
         List<Movie> actualMovieList = movieDao.getAll();
         assertEquals(25, actualMovieList.size());
+
         int index = actualMovieList.indexOf(expectedMovie);
         Movie actualMovie = actualMovieList.get(index);
 
