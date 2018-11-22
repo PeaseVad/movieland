@@ -34,4 +34,11 @@ public class DefaultMovieService implements MovieService {
         logger.debug("getThreeRandomMovies returned {} rows", movieList.size());
         return movieList;
     }
+
+    @Override
+    public List<Movie> getMoviesByGenre(int id) {
+        List<Movie> movieList = movieDao.getMoviesByGenre(id);
+        logger.debug("getMoviesByGenre returned {} rows", movieList.size());
+        return movieList;
+    }
 }

@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -48,12 +50,57 @@ public class JdbcMovieDaoTest {
         assertEquals(expectedMovie.getPicturePath(), actualMovie.getPicturePath());
     }
 
-  @Test
+    @Test
     public void testGetThreeRandomMovies() {
 
         List<Movie> actualMovieList = movieDao.getThreeRandomMovies();
         assertEquals(3, actualMovieList.size());
 
+    }
+
+
+    @Test
+    public void testGetMoviesByGenre() {
+
+        List<Movie> expectedMovieList = new ArrayList<>();
+
+        Movie expectedMovie1 = new Movie();
+        expectedMovie1.setId(22);
+        expectedMovie1.setNameRussian("Титаник");
+        expectedMovie1.setNameNative("Titanic");
+        expectedMovie1.setYearOfRelease("1997");
+        expectedMovie1.setRating(7.9);
+        expectedMovie1.setPrice(150);
+        expectedMovie1.setPicturePath("https://images-na.ssl-images-amazon.com/images/M/MV5BMDdmZGU3NDQtY2E5My00ZTliLWIzOTUtMTY4ZGI1YjdiNjk3XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1._SY209_CR0,0,140,209_.jpg");
+        expectedMovieList.add(expectedMovie1);
+
+        Movie expectedMovie2 = new Movie();
+        expectedMovie2.setId(3);
+        expectedMovie2.setNameRussian("Форрест Гамп");
+        expectedMovie2.setNameNative("Forrest Gump");
+        expectedMovie2.setYearOfRelease("1994");
+        expectedMovie2.setRating(8.6);
+        expectedMovie2.setPrice(200.6);
+        expectedMovie2.setPicturePath("https://images-na.ssl-images-amazon.com/images/M/MV5BNWIwODRlZTUtY2U3ZS00Yzg1LWJhNzYtMmZiYmEyNmU1NjMzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1._SY209_CR2,0,140,209_.jpg");
+        expectedMovieList.add(expectedMovie2);
+
+        Movie expectedMovie3 = new Movie();
+        expectedMovie3.setId(10);
+        expectedMovie3.setNameRussian("Жизнь прекрасна");
+        expectedMovie3.setNameNative("La vita è bella");
+        expectedMovie3.setYearOfRelease("1997");
+        expectedMovie3.setRating(8.2);
+        expectedMovie3.setPrice(145.99);
+        expectedMovie3.setPicturePath("https://images-na.ssl-images-amazon.com/images/M/MV5BYmJmM2Q4NmMtYThmNC00ZjRlLWEyZmItZTIwOTBlZDQ3NTQ1XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1._SY209_CR0,0,140,209_.jpg");
+        expectedMovieList.add(expectedMovie3);
+
+        List<Movie> actualMovieList = movieDao.getMoviesByGenre(5);
+
+        assertEquals(3, actualMovieList.size());
+
+        for (Movie actualMovie : actualMovieList) {
+            assertTrue(expectedMovieList.contains(actualMovie));
+        }
     }
 }
 
