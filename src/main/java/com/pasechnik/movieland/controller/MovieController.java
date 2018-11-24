@@ -4,6 +4,7 @@ import com.pasechnik.movieland.entity.Movie;
 import com.pasechnik.movieland.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +24,11 @@ public class MovieController {
     @RequestMapping(method = RequestMethod.GET, path = "movie/random", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Movie> getThreeRandomMovies() {
         return movieService.getThreeRandomMovies();
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "movie/genre/{genreId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public List<Movie> getMoviesByGenre(@PathVariable("genreId") int id) {
+        return movieService.getMoviesByGenre(id);
     }
 
     @Autowired

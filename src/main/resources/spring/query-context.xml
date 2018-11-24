@@ -13,5 +13,7 @@
     <bean id="getAllGenresSQL" class="java.lang.String">
         <constructor-arg value="select id,genre from genre"/>
     </bean>
-
+    <bean id="getMoviesByGenreSQL" class="java.lang.String">
+        <constructor-arg value="select * from movie m join genre_group g on m.genre_group_id = g.id_group where g.id_genre = ?"/>
+    </bean>
 </beans>

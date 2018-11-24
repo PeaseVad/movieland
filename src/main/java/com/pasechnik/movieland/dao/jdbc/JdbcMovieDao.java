@@ -12,18 +12,25 @@ import java.util.List;
 @Repository
 public class JdbcMovieDao implements MovieDao {
 
+    private static final MovieRowMapper MOVIE_ROW_MAPPER = new MovieRowMapper();
     private JdbcTemplate jdbcTemplate;
     private String getAllMoviesSQL;
     private String getRandomMoviesSQL;
+    private String getMoviesByGenreSQL;
 
     @Override
     public List<Movie> getAll() {
-        return jdbcTemplate.query(getAllMoviesSQL, new MovieRowMapper());
+        return jdbcTemplate.query(getAllMoviesSQL, MOVIE_ROW_MAPPER);
     }
 
     @Override
     public List<Movie> getThreeRandomMovies() {
-        return jdbcTemplate.query(getRandomMoviesSQL, new MovieRowMapper());
+        return jdbcTemplate.query(getRandomMoviesSQL, MOVIE_ROW_MAPPER);
+    }
+
+    @Override
+    public List<Movie> getMoviesByGenre(int id) {
+        return jdbcTemplate.query(getMoviesByGenreSQL,MOVIE_ROW_MAPPER,id);
     }
 
     @Autowired
@@ -39,5 +46,10 @@ public class JdbcMovieDao implements MovieDao {
     @Autowired
     public void setGetRandomMoviesSQL(String getRandomMoviesSQL) {
         this.getRandomMoviesSQL = getRandomMoviesSQL;
+    }
+
+    @Autowired
+    public void setGetMoviesByGenreSQL(String getMoviesByGenreSQL) {
+        this.getMoviesByGenreSQL = getMoviesByGenreSQL;
     }
 }

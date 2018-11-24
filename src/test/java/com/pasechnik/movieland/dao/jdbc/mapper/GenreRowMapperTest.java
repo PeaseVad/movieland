@@ -13,7 +13,7 @@ import static org.mockito.Mockito.when;
 public class GenreRowMapperTest {
 
     @Test
-    public void tetsMapRow() throws SQLException {
+    public void testMapRow() throws SQLException {
         GenreRowMapper genreRowMapper = new GenreRowMapper();
         ResultSet resultSet = mock(ResultSet.class);
 
