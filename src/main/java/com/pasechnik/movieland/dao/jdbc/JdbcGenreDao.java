@@ -11,12 +11,14 @@ import java.util.List;
 
 @Repository
 public class JdbcGenreDao implements GenreDao {
+
+    private static final GenreRowMapper GENRE_ROW_MAPPER = new GenreRowMapper();
     private JdbcTemplate jdbcTemplate;
     private String getAllGenresSQL;
 
     @Override
     public List<Genre> getAll() {
-        return jdbcTemplate.query(getAllGenresSQL, new GenreRowMapper());
+        return jdbcTemplate.query(getAllGenresSQL,GENRE_ROW_MAPPER);
     }
 
     @Autowired
