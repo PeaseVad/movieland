@@ -1,0 +1,11 @@
+jdbc:
+  driver : org.postgresql.Driver
+  url : jdbc:postgresql://localhost:5432/postgres
+  username : postgres
+  password : Pasechnik
+dbcp2:
+    max_total : 20
+    max_wait_millis : 1000
+schedule:
+  fixed_delay_time : 14400000
+  initial_delay_time : 14400000

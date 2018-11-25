@@ -1,12 +1,10 @@
-
-package com.pasechnik.movieland.dao.jdbc;
+package com.pasechnik.movieland.dao.cache;
 
 import com.pasechnik.movieland.dao.GenreDao;
 import com.pasechnik.movieland.entity.Genre;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -19,18 +17,17 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/resources/spring/root-context.xml", "file:src/main/webapp/WEB-INF/movieland-servlet.xml", "classpath:/spring/test-context.xml"})
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
-public class JdbcGenreDaoTest {
+public class CacheGenreDaoTest {
 
     @Autowired
-    @Qualifier("jdbcGenreDao")
-    GenreDao jdbcGenreDao;
+    GenreDao cachedGenreDao;
 
     @Test
     public void testGetAll() {
 
         Genre expectedGenre = new Genre(1, "драма");
 
-        List<Genre> actualGenreList = jdbcGenreDao.getAll();
+        List<Genre> actualGenreList = cachedGenreDao.getAll();
         assertEquals(15, actualGenreList.size());
 
         int index = actualGenreList.indexOf(expectedGenre);
