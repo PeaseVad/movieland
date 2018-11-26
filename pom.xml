@@ -109,9 +109,14 @@
             <version>2.5.0</version>
         </dependency>
 
+        <!-- yaml properties -->
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>1.23</version>
+        </dependency>
 
         <!-- Test-->
-
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>

@@ -1,9 +1,7 @@
 package com.pasechnik.movieland.service;
 
 import com.pasechnik.movieland.dao.GenreDao;
-import com.pasechnik.movieland.dao.MovieDao;
 import com.pasechnik.movieland.entity.Genre;
-import com.pasechnik.movieland.entity.Movie;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -22,14 +20,10 @@ public class DefaultGenreServiceTest {
 
         List<Genre> expectedGenreList = new ArrayList<>();
 
-        Genre genre1 = new Genre();
-        genre1.setId(1);
-        genre1.setName("драма");
+        Genre genre1 = new Genre(1, "драма");
         expectedGenreList.add(genre1);
 
-        Genre genre2 = new Genre();
-        genre2.setId(2);
-        genre2.setName("криминал");
+        Genre genre2 = new Genre(2, "криминал");
         expectedGenreList.add(genre2);
 
         DefaultGenreService genreService = new DefaultGenreService(genreDao);

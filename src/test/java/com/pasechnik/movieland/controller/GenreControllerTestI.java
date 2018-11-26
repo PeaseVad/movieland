@@ -57,9 +57,7 @@ public class GenreControllerTestI extends AbstractJUnit4SpringContextTests {
 
     @Test
     public void testGetAll() throws Exception {
-        Genre genre = new Genre();
-        genre.setId(1);
-        genre.setName("драма");
+        Genre genre = new Genre(1, "драма");
 
         // When
         when(genreService.getAll()).thenReturn(Collections.singletonList(genre));

@@ -20,6 +20,7 @@ import static org.junit.Assert.*;
 @ContextConfiguration(locations = {"file:src/main/resources/spring/root-context.xml", "file:src/main/webapp/WEB-INF/movieland-servlet.xml", "classpath:/spring/test-context.xml"})
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 public class JdbcMovieDaoTest {
+
     @Autowired
     private MovieDao movieDao;
 
