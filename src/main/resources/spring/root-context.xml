@@ -10,7 +10,6 @@
 http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
 
     <import resource="query-context.xml"/>
-   <!-- <context:property-placeholder location="classpath:/db/application.properties" />-->
 
     <bean id="yamlProperties" class="org.springframework.beans.factory.config.YamlPropertiesFactoryBean">
         <property name="resources" value="classpath:/db/application.yml"/>

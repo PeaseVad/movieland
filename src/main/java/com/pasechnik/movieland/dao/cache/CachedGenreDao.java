@@ -28,13 +28,12 @@ public class CachedGenreDao implements GenreDao {
 
     @Override
     public List<Genre> getAll() {
-        logger.debug("GetAll from CachedGenreDao");
         return new ArrayList<>(cache);
     }
 
     @PostConstruct
     @Scheduled(initialDelayString = "${schedule.initial_delay_time}", fixedDelayString = "${schedule.fixed_delay_time}")
-    public void refreshCache() {
+    private void refreshCache() {
         cache = genreDao.getAll();
         logger.debug("Refresh for cache was completed, size {} rows", cache.size());
     }

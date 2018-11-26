@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository("jdbcGenreDao")
+@Repository
 public class JdbcGenreDao implements GenreDao {
     private final Logger logger = LoggerFactory.getLogger(getClass());
     private static final GenreRowMapper GENRE_ROW_MAPPER = new GenreRowMapper();
@@ -20,7 +20,6 @@ public class JdbcGenreDao implements GenreDao {
 
     @Override
     public List<Genre> getAll() {
-        logger.debug("GetAll from JdbcGenreDao");
         return jdbcTemplate.query(getAllGenresSQL,GENRE_ROW_MAPPER);
     }
 
