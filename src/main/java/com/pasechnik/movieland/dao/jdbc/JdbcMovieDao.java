@@ -1,5 +1,6 @@
 package com.pasechnik.movieland.dao.jdbc;
 
+import com.pasechnik.common.RequestAdditionalParam;
 import com.pasechnik.movieland.dao.MovieDao;
 import com.pasechnik.movieland.dao.jdbc.mapper.MovieRowMapper;
 import com.pasechnik.movieland.entity.Movie;
@@ -30,7 +31,19 @@ public class JdbcMovieDao implements MovieDao {
 
     @Override
     public List<Movie> getMoviesByGenre(int id) {
-        return jdbcTemplate.query(getMoviesByGenreSQL,MOVIE_ROW_MAPPER,id);
+        return jdbcTemplate.query(getMoviesByGenreSQL, MOVIE_ROW_MAPPER, id);
+    }
+
+    @Override
+    public List<Movie> getAll(RequestAdditionalParam requestAdditionalParam) {
+        String getAllMoviesWithSortingSQL = SQLGenerator.addSortingToSQL(getAllMoviesSQL, requestAdditionalParam);
+        return jdbcTemplate.query(getAllMoviesWithSortingSQL, MOVIE_ROW_MAPPER);
+    }
+
+    @Override
+    public List<Movie> getMoviesByGenre(int id, RequestAdditionalParam requestAdditionalParam) {
+        String getMoviesByGenreWithSortingSQL = SQLGenerator.addSortingToSQL(getMoviesByGenreSQL, requestAdditionalParam);
+        return jdbcTemplate.query(getMoviesByGenreWithSortingSQL, MOVIE_ROW_MAPPER, id);
     }
 
     @Autowired

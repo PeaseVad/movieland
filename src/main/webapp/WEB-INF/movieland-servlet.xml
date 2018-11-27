@@ -15,4 +15,12 @@
 
     <mvc:annotation-driven/>
 
+    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <property name="customEditors">
+            <map>
+                <entry key="com.pasechnik.common.SortType" value="com.pasechnik.common.SortTypeConverter"/>
+            </map>
+        </property>
+    </bean>
+
 </beans>

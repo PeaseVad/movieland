@@ -1,6 +1,9 @@
 
 package com.pasechnik.movieland.dao.jdbc;
 
+import com.pasechnik.common.RequestAdditionalParam;
+import com.pasechnik.common.SortField;
+import com.pasechnik.common.SortType;
 import com.pasechnik.movieland.dao.MovieDao;
 import com.pasechnik.movieland.entity.Movie;
 import org.junit.Test;
@@ -14,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -53,10 +57,8 @@ public class JdbcMovieDaoTest {
 
     @Test
     public void testGetThreeRandomMovies() {
-
         List<Movie> actualMovieList = movieDao.getThreeRandomMovies();
         assertEquals(3, actualMovieList.size());
-
     }
 
     @Test
@@ -101,6 +103,83 @@ public class JdbcMovieDaoTest {
         for (Movie actualMovie : actualMovieList) {
             assertTrue(expectedMovieList.contains(actualMovie));
         }
+    }
+
+    @Test
+    public void testGetMoviesByGenreWithSort() {
+
+        Movie expectedMovie1 = new Movie();
+        expectedMovie1.setId(3);
+        expectedMovie1.setNameRussian("Форрест Гамп");
+        expectedMovie1.setNameNative("Forrest Gump");
+        expectedMovie1.setYearOfRelease("1994");
+        expectedMovie1.setRating(8.6);
+        expectedMovie1.setPrice(200.6);
+        expectedMovie1.setPicturePath("https://images-na.ssl-images-amazon.com/images/M/MV5BNWIwODRlZTUtY2U3ZS00Yzg1LWJhNzYtMmZiYmEyNmU1NjMzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1._SY209_CR2,0,140,209_.jpg");
+
+        RequestAdditionalParam requestAdditionalParam = new RequestAdditionalParam();
+        requestAdditionalParam.setSortField(SortField.PRICE);
+        requestAdditionalParam.setSortType(SortType.DESC);
+
+        List<Movie> actualMovieList1 = movieDao.getMoviesByGenre(5, requestAdditionalParam);
+        Movie actualMovie1 = actualMovieList1.get(0);
+
+        assertEquals(expectedMovie1, actualMovie1);
+
+        requestAdditionalParam.setSortType(SortType.ASC);
+
+        Movie expectedMovie2 = new Movie();
+
+        expectedMovie2.setId(10);
+        expectedMovie2.setNameRussian("Жизнь прекрасна");
+        expectedMovie2.setNameNative("La vita è bella");
+        expectedMovie2.setYearOfRelease("1997");
+        expectedMovie2.setRating(8.2);
+        expectedMovie2.setPrice(145.99);
+        expectedMovie2.setPicturePath("https://images-na.ssl-images-amazon.com/images/M/MV5BYmJmM2Q4NmMtYThmNC00ZjRlLWEyZmItZTIwOTBlZDQ3NTQ1XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1._SY209_CR0,0,140,209_.jpg");
+
+        List<Movie> actualMovieList2 = movieDao.getMoviesByGenre(5, requestAdditionalParam);
+        Movie actualMovie2 = actualMovieList2.get(0);
+
+        assertEquals(expectedMovie2, actualMovie2);
+    }
+
+    @Test
+    public void testGetMoviesWithSort() {
+
+        Movie expectedMovie1 = new Movie();
+        expectedMovie1.setId(17);
+        expectedMovie1.setNameRussian("Зеленая миля");
+        expectedMovie1.setNameNative("The Green Mile");
+        expectedMovie1.setYearOfRelease("1999");
+        expectedMovie1.setRating(8.9);
+        expectedMovie1.setPrice(134.67);
+        expectedMovie1.setPicturePath("https://images-na.ssl-images-amazon.com/images/M/MV5BMTUxMzQyNjA5MF5BMl5BanBnXkFtZTYwOTU2NTY3._V1._SY209_CR0,0,140,209_.jpg");
+
+        RequestAdditionalParam requestAdditionalParam = new RequestAdditionalParam();
+        requestAdditionalParam.setSortField(SortField.RATING);
+        requestAdditionalParam.setSortType(SortType.DESC);
+
+        List<Movie> actualMovieList1 = movieDao.getAll(requestAdditionalParam);
+        Movie actualMovie1 = actualMovieList1.get(0);
+
+        assertEquals(expectedMovie1, actualMovie1);
+
+        requestAdditionalParam.setSortType(SortType.ASC);
+
+        Movie expectedMovie2 = new Movie();
+        expectedMovie2.setId(7);
+        expectedMovie2.setNameRussian("Блеф");
+        expectedMovie2.setNameNative("Bluff storia di truffe e di imbroglioni");
+        expectedMovie2.setYearOfRelease("1976");
+        expectedMovie2.setRating(7.6);
+        expectedMovie2.setPrice(100);
+        expectedMovie2.setPicturePath("https://images-na.ssl-images-amazon.com/images/M/MV5BMjk5YmMxMjMtMTlkNi00YTI5LThhYTMtOTk2NmNiNzQwMzI0XkEyXkFqcGdeQXVyMTQ3Njg3MQ@@._V1._SX140_CR0,0,140,209_.jpg");
+
+        List<Movie> actualMovieList2 = movieDao.getAll(requestAdditionalParam);
+        Movie actualMovie2 = actualMovieList2.get(0);
+
+        assertEquals(expectedMovie2, actualMovie2);
     }
 }
 

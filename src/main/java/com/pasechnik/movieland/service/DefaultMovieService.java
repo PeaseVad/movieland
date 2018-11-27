@@ -1,5 +1,6 @@
 package com.pasechnik.movieland.service;
 
+import com.pasechnik.common.RequestAdditionalParam;
 import com.pasechnik.movieland.dao.MovieDao;
 import com.pasechnik.movieland.entity.Movie;
 import org.slf4j.Logger;
@@ -40,5 +41,15 @@ public class DefaultMovieService implements MovieService {
         List<Movie> movieList = movieDao.getMoviesByGenre(id);
         logger.debug("getMoviesByGenre returned {} rows", movieList.size());
         return movieList;
+    }
+
+    @Override
+    public List<Movie> getAll(RequestAdditionalParam requestAdditionalParam) {
+        return movieDao.getAll(requestAdditionalParam);
+    }
+
+    @Override
+    public List<Movie> getMoviesByGenre(int id, RequestAdditionalParam requestAdditionalParam) {
+       return movieDao.getMoviesByGenre(id,requestAdditionalParam);
     }
 }
