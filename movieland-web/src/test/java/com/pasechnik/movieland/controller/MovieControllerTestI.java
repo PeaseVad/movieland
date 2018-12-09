@@ -3,6 +3,7 @@ package com.pasechnik.movieland.controller;
 
 import com.pasechnik.movieland.dao.MovieDao;
 import com.pasechnik.movieland.entity.Movie;
+import com.pasechnik.movieland.entity.MovieWithDescription;
 import com.pasechnik.movieland.service.MovieService;
 import org.junit.Before;
 import org.junit.Test;
@@ -172,6 +173,25 @@ public class MovieControllerTestI extends AbstractJUnit4SpringContextTests {
                 .andExpect(status().isOk());
 
         mockMvc.perform(get("/movie?rating=desc"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void testGetMovieById() throws Exception {
+        MovieWithDescription movie = new MovieWithDescription();
+        movie.setId(1);
+        movie.setNameRussian("Список Шиндлера");
+        movie.setNameNative("Schindler's List");
+        movie.setYearOfRelease("1900");
+        movie.setDescription("Сымитировав помешательство в надежде избежать тюремного заключения, Рэндл Патрик МакМерфи попадает в психиатрическую клинику, где почти безраздельным хозяином является жестокосердная сестра Милдред Рэтчед. МакМерфи поражается тому, что прочие пациенты смирились с существующим положением вещей, а некоторые — даже сознательно пришли в лечебницу, прячась от пугающего внешнего мира. И решается на бунт. В одиночку.");
+        movie.setRating(8.7);
+        movie.setPrice(150.5);
+        movie.setPicturePath("https://images-na.ssl-images-amazon.com/images/M/MV5BNDE4OTMxMTctNmRhYy00NWE2LTg3YzItYTk3M2UwOTU5Njg4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1._SX140_CR0,0,140,209_.jpg");
+
+        // When
+        when(movieDao.getMovieById(2)).thenReturn(movie);
+
+        mockMvc.perform(get("/movie/2"))
                 .andExpect(status().isOk());
     }
 }

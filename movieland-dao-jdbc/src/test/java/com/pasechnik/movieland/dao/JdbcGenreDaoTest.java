@@ -38,6 +38,21 @@ public class JdbcGenreDaoTest {
         assertEquals(expectedGenre.getId(), actualGenre.getId());
         assertEquals(expectedGenre.getName(), actualGenre.getName());
     }
+
+
+    @Test
+    public void getByMovieId() {
+
+        Genre expectedGenre = new Genre(1, "драма");
+
+        List<Genre> actualGenreList = jdbcGenreDao.getByMovieId(2);
+
+        int index = actualGenreList.indexOf(expectedGenre);
+        Genre actualGenre = actualGenreList.get(index);
+
+        assertEquals(expectedGenre.getId(), actualGenre.getId());
+        assertEquals(expectedGenre.getName(), actualGenre.getName());
+    }
 }
 
 
