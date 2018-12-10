@@ -5,6 +5,7 @@ import com.pasechnik.movieland.common.SortField;
 import com.pasechnik.movieland.common.SortType;
 import com.pasechnik.movieland.common.SortTypeConverter;
 import com.pasechnik.movieland.entity.Movie;
+import com.pasechnik.movieland.entity.MovieWithDescription;
 import com.pasechnik.movieland.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -82,6 +83,11 @@ public class MovieController {
         }
 
         return ResponseEntity.ok(movieService.getMoviesByGenre(id, requestAdditionalParam));
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "movie/{movieId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public MovieWithDescription getMovieById(@PathVariable("movieId") int id) {
+        return movieService.getMovieById(id);
     }
 
     @InitBinder

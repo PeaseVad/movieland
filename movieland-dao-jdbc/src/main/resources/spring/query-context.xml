@@ -14,6 +14,20 @@
         <constructor-arg value="select id,genre from genre"/>
     </bean>
     <bean id="getMoviesByGenreSQL" class="java.lang.String">
-        <constructor-arg value="select * from movie m join genre_group g on m.genre_group_id = g.id_group where g.id_genre = ?"/>
+        <constructor-arg value="select * from movie m join movie_genre g on m.id = g.movie_id where g.id_genre = ?"/>
+    </bean>
+    <bean id="getMovieByIdSQL" class="java.lang.String">
+        <constructor-arg value="select id, movie_name_rus,movie_name_native,release_date,storyline, rating,price,poster from movie where id = ?"/>
+    </bean>
+    <bean id="getCountryByMovieIdSQL" class="java.lang.String">
+        <constructor-arg value="select c.id,c.name from country c join movie_country mc on c.id=mc.country_id where mc.movie_id = ?"/>
+    </bean>
+
+    <bean id="getGenreByMovieIdSQL" class="java.lang.String">
+        <constructor-arg value="select g.id, g.genre from genre g join movie_genre mg on g.id=mg.id_genre where mg.movie_id = ?"/>
+    </bean>
+
+    <bean id="getReviewByMovieIdSQL" class="java.lang.String">
+        <constructor-arg value="select r.id,r.review_text,u.id as user_id , u.user_email from review r join users u on r.reviewer_id=u.id where r.movie_id = ?"/>
     </bean>
 </beans>

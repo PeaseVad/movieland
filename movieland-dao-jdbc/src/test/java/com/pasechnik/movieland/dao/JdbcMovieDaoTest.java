@@ -5,6 +5,7 @@ import com.pasechnik.movieland.common.RequestAdditionalParam;
 import com.pasechnik.movieland.common.SortField;
 import com.pasechnik.movieland.common.SortType;
 import com.pasechnik.movieland.entity.Movie;
+import com.pasechnik.movieland.entity.MovieWithDescription;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -179,6 +180,31 @@ public class JdbcMovieDaoTest {
         Movie actualMovie2 = actualMovieList2.get(0);
 
         assertEquals(expectedMovie2, actualMovie2);
+    }
+
+    @Test
+    public void getMovieById() {
+
+        MovieWithDescription expectedMovie = new MovieWithDescription();
+        expectedMovie.setId(2);
+        expectedMovie.setNameRussian("Пролетая над гнездом кукушки");
+        expectedMovie.setNameNative("One Flew Over the Cuckoo's Nest");
+        expectedMovie.setYearOfRelease("1975");
+        expectedMovie.setDescription("Сымитировав помешательство в надежде избежать тюремного заключения, Рэндл Патрик МакМерфи попадает в психиатрическую клинику, где почти безраздельным хозяином является жестокосердная сестра Милдред Рэтчед. МакМерфи поражается тому, что прочие пациенты смирились с существующим положением вещей, а некоторые — даже сознательно пришли в лечебницу, прячась от пугающего внешнего мира. И решается на бунт. В одиночку.");
+        expectedMovie.setRating(8.7);
+        expectedMovie.setPrice(180.0);
+        expectedMovie.setPicturePath("https://images-na.ssl-images-amazon.com/images/M/MV5BZjA0OWVhOTAtYWQxNi00YzNhLWI4ZjYtNjFjZTEyYjJlNDVlL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1._SY209_CR0,0,140,209_.jpg");
+
+        MovieWithDescription actualMovie = movieDao.getMovieById(2);
+
+        assertEquals(expectedMovie.getId(), actualMovie.getId());
+        assertEquals(expectedMovie.getNameRussian(), actualMovie.getNameRussian());
+        assertEquals(expectedMovie.getNameNative(), actualMovie.getNameNative());
+        assertEquals(expectedMovie.getYearOfRelease(), actualMovie.getYearOfRelease());
+        assertEquals(expectedMovie.getDescription(), actualMovie.getDescription());
+        assertEquals(expectedMovie.getRating(), actualMovie.getRating(), 0.1);
+        assertEquals(expectedMovie.getPrice(), actualMovie.getPrice(), 0.1);
+        assertEquals(expectedMovie.getPicturePath(), actualMovie.getPicturePath());
     }
 }
 

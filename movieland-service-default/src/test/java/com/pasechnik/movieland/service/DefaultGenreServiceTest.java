@@ -38,4 +38,27 @@ public class DefaultGenreServiceTest {
             assertTrue(expectedGenreList.contains(actualGenre));
         }
     }
+
+    @Test
+    public void testGetMovieById() {
+
+        GenreDao genreDao = mock(GenreDao.class);
+
+        List<Genre> expectedGenreList = new ArrayList<>();
+
+        Genre genre = new Genre(1, "драма");
+        expectedGenreList.add(genre);
+
+        DefaultGenreService genreService = new DefaultGenreService(genreDao);
+
+        when(genreDao.getByMovieId(2)).thenReturn(expectedGenreList);
+
+        List<Genre> actualGenreList = genreService.getByMovieId(2);
+
+        assertEquals(1, actualGenreList.size());
+
+        for (Genre actualGenre : actualGenreList) {
+            assertTrue(expectedGenreList.contains(actualGenre));
+        }
+    }
 }
