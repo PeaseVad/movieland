@@ -9,3 +9,6 @@ dbcp2:
 schedule:
   fixed_delay_time : 14400000
   initial_delay_time : 14400000
+  cron_value : 0 0 18 * * ?
+api:
+  nbu_api : https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json

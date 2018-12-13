@@ -1,6 +1,8 @@
 package com.pasechnik.movieland.controller;
 
 
+import com.pasechnik.movieland.controller.config.MVCConfig;
+import com.pasechnik.movieland.controller.config.RootConfig;
 import com.pasechnik.movieland.dao.MovieDao;
 import com.pasechnik.movieland.entity.Movie;
 import com.pasechnik.movieland.entity.MovieWithDescription;
@@ -33,7 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"file:src/main/resources/spring/root-context.xml", "file:src/main/webapp/WEB-INF/movieland-servlet.xml"})
+@ContextConfiguration(classes = {RootConfig.class, MVCConfig.class})
 @WebAppConfiguration
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 public class MovieControllerTestI extends AbstractJUnit4SpringContextTests {
