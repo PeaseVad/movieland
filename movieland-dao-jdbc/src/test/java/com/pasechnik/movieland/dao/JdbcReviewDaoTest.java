@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"file:src/main/resources/spring/movieland-dao-jdbc-context.xml", "classpath:/spring/test-context.xml"})
+@ContextConfiguration( classes = {TestDaoConfig.class})
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 public class JdbcReviewDaoTest {
 

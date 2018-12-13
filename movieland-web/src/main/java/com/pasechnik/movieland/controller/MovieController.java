@@ -1,9 +1,6 @@
 package com.pasechnik.movieland.controller;
 
-import com.pasechnik.movieland.common.RequestAdditionalParam;
-import com.pasechnik.movieland.common.SortField;
-import com.pasechnik.movieland.common.SortType;
-import com.pasechnik.movieland.common.SortTypeConverter;
+import com.pasechnik.movieland.common.*;
 import com.pasechnik.movieland.entity.Movie;
 import com.pasechnik.movieland.entity.MovieWithDescription;
 import com.pasechnik.movieland.service.MovieService;
@@ -86,13 +83,20 @@ public class MovieController {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "movie/{movieId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public MovieWithDescription getMovieById(@PathVariable("movieId") int id) {
-        return movieService.getMovieById(id);
+    public MovieWithDescription getMovieById(@PathVariable("movieId") int id, @RequestParam(name = "currency", required = false) CurrencyType currencyType) {
+        if (currencyType != null) {
+            RequestAdditionalParam requestAdditionalParam = new RequestAdditionalParam();
+            requestAdditionalParam.setCurrencyType(currencyType);
+            return movieService.getMovieById(id, requestAdditionalParam);
+        } else {
+            return movieService.getMovieById(id);
+        }
     }
 
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
         dataBinder.registerCustomEditor(SortType.class, new SortTypeConverter());
+        dataBinder.registerCustomEditor(CurrencyType.class, new CurrencyTypeConverter());
     }
 
     @Autowired

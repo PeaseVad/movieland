@@ -1,23 +1,31 @@
 package com.pasechnik.movieland.common;
 
-
 public class RequestAdditionalParam {
     private SortField sortField;
     private SortType sortType;
+    private CurrencyType currencyType;
 
-    public com.pasechnik.movieland.common.SortField getSortField() {
+    public CurrencyType getCurrencyType() {
+        return currencyType;
+    }
+
+    public void setCurrencyType(CurrencyType currencyType) {
+        this.currencyType = currencyType;
+    }
+
+    public SortField getSortField() {
         return sortField;
     }
 
-    public void setSortField(com.pasechnik.movieland.common.SortField sortField) {
+    public void setSortField(SortField sortField) {
         this.sortField = sortField;
     }
 
-    public com.pasechnik.movieland.common.SortType getSortType() {
+    public SortType getSortType() {
         return sortType;
     }
 
-    public void setSortType(com.pasechnik.movieland.common.SortType sortType) {
+    public void setSortType(SortType sortType) {
         this.sortType = sortType;
     }
 }

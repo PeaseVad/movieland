@@ -20,6 +20,7 @@ public class DefaultMovieService implements MovieService {
     private CountryService countryService;
     private GenreService genreService;
     private ReviewService reviewService;
+    private CurrencyService currencyService;
 
     @Autowired
     public DefaultMovieService(MovieDao movieDao) {
@@ -66,6 +67,20 @@ public class DefaultMovieService implements MovieService {
         return movieWithDescription;
     }
 
+    @Override
+    public MovieWithDescription getMovieById(int id, RequestAdditionalParam requestAdditionalParam) {
+
+        MovieWithDescription movieWithDescription = movieDao.getMovieById(id);
+
+        double rate = currencyService.getRateByCurrency(requestAdditionalParam.getCurrencyType());
+        double currencyPrice = movieWithDescription.getPrice() / rate;
+        movieWithDescription.setPrice(currencyPrice);
+        movieWithDescription.setCountries(countryService.getByMovieId(id));
+        movieWithDescription.setGenres(genreService.getByMovieId(id));
+        movieWithDescription.setReviews(reviewService.getByMovieId(id));
+        return movieWithDescription;
+    }
+
     @Autowired
     public void setCountryService(CountryService countryService) {
         this.countryService = countryService;
@@ -79,5 +94,10 @@ public class DefaultMovieService implements MovieService {
     @Autowired
     public void setReviewService(ReviewService reviewService) {
         this.reviewService = reviewService;
+    }
+
+    @Autowired
+    public void setCurrencyService(CurrencyService currencyService) {
+        this.currencyService = currencyService;
     }
 }
